@@ -15,7 +15,7 @@ import java.util.Random;
 public class PrintNumberTimer implements Runnable {
 
     private Random numRandom;
-    private boolean runContinue = true;
+    private static boolean runContinue = true;
 
     public PrintNumberTimer() {
         numRandom = new Random();
@@ -28,7 +28,13 @@ public class PrintNumberTimer implements Runnable {
         }
     }
 
-    public void setRunContinue(boolean runContinue) {
-        this.runContinue = runContinue;
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("启动线程，刷新随机数。。。");
+        Thread timer = new Thread(new PrintNumberTimer());
+        timer.start();
+        Thread.sleep(100L);
+        runContinue = false;
+        Thread.sleep(100L);
+        System.out.println("线程结束！");
     }
 }
