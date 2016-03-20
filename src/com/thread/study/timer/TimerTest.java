@@ -17,7 +17,9 @@ public class TimerTest {
         timer.start();
         Thread.sleep(100L);
         timer.setRunContinue(false);
-        Thread.sleep(100L);
+        while (timer.isAlive()) {
+            System.out.println("线程正在结束。。。");
+        }
         System.out.println("线程结束！");
     }
 }
