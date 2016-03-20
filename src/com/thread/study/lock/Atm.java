@@ -1,0 +1,41 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.thread.study.lock;
+
+import javax.naming.InsufficientResourcesException;
+
+/**
+ *
+ * @author Administrator
+ */
+public class Atm {
+
+    Account acc;
+
+    public boolean login(String name) {
+        if (acc != null) {
+            throw new IllegalArgumentException("Already logged in!");
+        }
+        acc = new Account(name);
+        return true;
+    }
+
+    public void desposit(float amt) {
+        acc.deposit(amt);
+    }
+
+    public void withdraw(float amt) throws InsufficientResourcesException {
+        acc.withdraw(amt);
+    }
+
+    public float getBalance() {
+        return acc.getBalance();
+    }
+
+    public void logout() {
+        acc = null;
+    }
+}
